@@ -1,0 +1,33 @@
+{extend name="base" /}
+
+{block name="title"}Home{/block}
+
+{block name="main"}
+    <div class="container">
+        <ol class="breadcrumb my-4">
+            <li class="breadcrumb-item active">Boards</li>
+        </ol>
+        <table class="table" border="1">
+            <thead class="thead-dark">
+            <tr>
+                <th>Board</th>
+                <!--<th>Posts</th>-->
+                <th>Topics</th>
+                <th>Last Post</th>
+            </tr>
+            </thead>
+            {volist name='data', id='value'}
+            <tbody>
+            <td>
+                <a href="/board/{$value.id}">{$value.board}</a>
+                <!--<small>{$value.description}</small>-->
+                <small class="text-muted d-block">{$value.description}</small>
+            </td>
+            <!--<td>{//$value.post}</td>-->
+            <td>{$value.topic}</td>
+            <td>{$value.last_post}</td>
+            </tbody>
+            {/volist}
+        </table>
+    </div>
+{/block}

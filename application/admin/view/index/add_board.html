@@ -1,0 +1,44 @@
+{extend name="base" /}
+
+{block name="content"}
+<div class="col-md-10">
+    <ol class="breadcrumb">
+        <li><a href="/index"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+        <li><a href="/boards">板块列表</a></li>
+        <li class="active">板块添加</li>
+        <button class="btn btn-primary btn-xs pull-right"><span class="glyphicon glyphicon-refresh"></span></button>
+    </ol>
+    <!--面板-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="boards.html" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>板块界面</a>
+            <div class="panel-body">
+                <form action="/insertBoard" method="post">
+                    <div class="form-group">
+                        <label for="">board</label>
+                        <input type="text" name="board" class="form-control" id="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">description</label>
+                        <input type="text" name="description" class="form-control" id="">
+                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<label for="">last_post</label>-->
+                        <!--<input type="password" name="last_post" class="form-control" id="">-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="">topic</label>-->
+                        <!--<input type="text" name="topic" class="form-control" id="">-->
+                    <!--</div>-->
+
+                    <div class="form-group">
+                        <input type="submit" value="提交" class="btn btn-success">
+                        <input type="reset" value="重置" class="btn btn-danger">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

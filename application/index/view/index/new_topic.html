@@ -1,0 +1,26 @@
+{extend name="base" /}
+
+{block name="title"}New Topic{/block}
+
+{block name="main"}
+
+<ol class="breadcrumb my-4">
+    <li class="breadcrumb-item"><a href="/">Boards</a></li>
+    <li class="breadcrumb-item"><a href="/board/{$id}">{$newName}</a></li>
+    <li class="breadcrumb-item">New Topic</a></li>
+</ol>
+<form action="/insertDatabase/{$newName}" method="post">
+    <p>标题</p>
+    <div class="form-group">
+        <input type="text" style="background: transparent;" id="" name="topic" class="form-control">
+    </div>
+    <div class="form-group">
+        <textarea rows="20" cols="50" id="" name="content" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <input type="hidden" class="{$name}" >
+        <input type="submit" value="发表" class="btn btn-success">
+        <input type="reset" value="清空" class="btn-danger">
+    </div>
+</form>
+{/block}

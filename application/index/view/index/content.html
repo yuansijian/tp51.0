@@ -1,0 +1,70 @@
+{extend name="base" /}
+
+{block name="title"}Post{/block}
+
+{block name="main"}
+<div class="container">
+        <ol class="breadcrumb my-4">
+            <li class="breadcrumb-item active"><a href="/">Boards</a></li>
+            <li class="breadcrumb-item"><a href="/board/{$id}">{$topic_name}</a></li>
+            <li class="breadcrumb-item">{$data.topic}</li>
+        </ol>
+
+        <div class="mb-4">
+            <a href="/reply/{$topic_name}/{$data.topic}" class="btn btn-primary" role="button">Reply</a>
+        </div>
+
+        <div id="{$start}" class="card mb-2 border-dark">
+            <div class="card-header text-white bg-dark py-2 px-3">{$data.topic}</div>
+            <div class="card-body p-3">
+                <div class="row">
+                    <div class="col-2">
+                        <!--默认头像-->
+                        <img src="/static/img/1.ico" alt="123" class="w-100">
+                        <!--<img src="https://www.gravatar.com/avatar/bd4cff2183319a7ad4dacd7ea616ecff?d=mm&amp;s=256" alt="123" class="w-100 rounded">-->
+                        <small>Posts: 0</small>
+                    </div>
+                    <div class="col-10">
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <strong class="text-muted">{$data.user}</strong>
+                            </div>
+                            <div class="col-6 text-right">
+                                <small class="text-muted">{$data.create_time}</small>
+                            </div>
+                        </div>
+                        {$data.content}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {volist name="reply" id="value"}
+        <div id="{$value.user}" class="card mb-4">
+            <div class="card-body p-3">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="/static/img/1.ico" alt="{$name}" class="w-100">
+                        <small>Post: {$value.ran}</small>
+                    </div>
+                    <div class="col-10">
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <strong class="text-muted">{$value.user}</strong>
+                            </div>
+                            <div class="col-6 text-right">
+                                <small>{$value.time}</small>
+                            </div>
+                        </div>
+                        {$value.content}
+                        <?php if($name == $value['user']){ ?>
+                            <div class="mt-3">
+                                <a href="/replyRedict/{$topic_name}/{$data.topic}/{$value.ran}" class="btn btn-primary btn-sm" role="button">Edit</a>
+                            </div>
+                         <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {/volist}
+</div>
+{/block}

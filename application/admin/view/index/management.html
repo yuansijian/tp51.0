@@ -1,0 +1,41 @@
+{extend name="base" /}
+
+{block name="content"}
+<div class="col-md-10">
+    <ol class="breadcrumb">
+        <li><a href="/index"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+        <li class="active">成员员列表</li>
+        <button class="btn btn-primary btn-xs pull-right"><span class="glyphicon glyphicon-refresh"></span></button>
+    </ol>
+    <!--面板-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="add.html" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> 添加成员</a>
+
+            <p class="pull-right tots">共有{$count}条数据</p>
+            <form action="/searchUser" class="form-inline pull-right" method="post">
+                <div class="form-group">
+                    <input type="text" name="username" class="form-control" placeholder="请输入你要搜索的用户名" id="">
+                </div>
+                <input type="submit" value="搜索" class="btn btn-success">
+            </form>
+        </div>
+        <table class="table-bordered table table-hover">
+            <th><input type="checkbox" name="id" id=""></th>
+            <th>id</th>
+            <th>name</th>
+            <th>email</th>
+            <th>操作</th>
+            {volist name="user" id="value"}
+            <tr>
+                <td><input type="checkbox" name="choose"></td>
+                <td>{$value.id}</td>
+                <td>{$value.name}</td>
+                <td>{$value.email}</td>
+                <td><a href="" class="glyphicon glyphicon-pencil"></a>&nbsp;&nbsp;&nbsp;<a href="/deleteUser/{$value.id}" class="glyphicon glyphicon-trash"></a></td>
+            </tr>
+            {/volist}
+        </table>
+    </div>
+</div>
+{/block}

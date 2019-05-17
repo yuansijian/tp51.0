@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <!--<link rel="stylesheet" href="/static/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="/static/css/sign_up.css">
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+</head>
+<body>
+<div id="carbonForm">
+    <h1>Signup</h1>
+    <form action="/insertDatabase" method="post" id="signupForm">
+        <div class="fieldContainer">
+            <div class="formRow">
+                <div class="label">
+                    <label for="name">Name:</label>
+                </div>
+                <div class="field">
+                    <input type="text" name="name" id="name">
+                </div>
+            </div>
+            <div class="formRow">
+                <div class="label">
+                    <label for="email">Email:</label>
+                </div>
+                <div class="field">
+                    <input type="text" name="email" id="email" onchange="check()">
+                </div>
+            </div>
+            <div class="formRow">
+                <div class="label">
+                    <label for="pass">Password:</label>
+                </div>
+                <div class="field">
+                    <input type="password" name="password" id="pass">
+                </div>
+            </div>
+        </div>
+        <!-- Closing fieldContainer -->
+        <div class="signupButton">
+            <input type="submit" id="submit"/>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+    function check(){
+        var reg = /^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/; //正则表达式
+        var obj = document.getElementById("email"); //要验证的对象
+        if(obj.value === ""){ //输入不能为空
+            alert("输入不能为空!");
+            return false;
+        }else if(!reg.test(obj.value)){ //正则验证不通过，格式不对
+            alert("请输入正确的邮箱!");
+            return false;
+        }
+    }
+</script>
+</html>

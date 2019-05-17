@@ -1,0 +1,36 @@
+{extend name="base" /}
+
+{block name="title"}Post a reply{/block}
+
+{block name="main"}
+<div class="container">
+    <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item active"><a href="/">Boards</a></li>
+        <li class="breadcrumb-item"><a href="/board/{$id}">{$topic_name}</a></li>
+        <li class="breadcrumb-item"><a href="/content/{$topic_name}/{$small_topic}">{$small_topic}</a></li>
+        <li class="breadcrumb-item active">Post a reply</li>
+    </ol>
+
+    <form method="post" action="/replyInsert" class="mb-4">
+        <input type="hidden" name="csrfmiddlewaretoken" value="zL6Jhwm0DgEDNHhxGNnGO3vetsrMEveRbuBOYZaOVlMPPyOLUF7tJk6plccYYr93">
+        <input type="hidden" name="board" value="{$topic_name}">
+        <input type="hidden" name="topic" value="{$small_topic}">
+        <div class="form-group">
+            <label>Message:</label>
+            <div id="wmd-editor" class="panel">
+                <div id="wmd-button-bar"></div>
+                <textarea name="text" cols="40" rows="10" id="wmd-input" class="form-control" maxlength="4000"></textarea>
+                <div id="wmd-preview" class="wmd-panel"></div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Post a reply</button>
+    </form>
+</div>
+<script>
+    var title = $('#wmd-preview');
+    title.bind('DOMNodeInserted', function(e) {
+        $("#wmd-preview pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+{/block}

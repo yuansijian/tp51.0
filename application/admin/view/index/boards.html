@@ -1,0 +1,45 @@
+{extend name="base" /}
+
+{block name="content"}
+<div class="col-md-10">
+    <ol class="breadcrumb">
+        <li><a href="/index"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+        <li class="active">板块列表</li>
+        <button class="btn btn-primary btn-xs pull-right"><span class="glyphicon glyphicon-refresh"></span></button>
+    </ol>
+    <!--面板-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="/addBoard" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> 添加板块</a>
+            <p class="pull-right tots">共有{$count}条数据</p>
+            <form action="/searchBoard" class="form-inline pull-right" method="post">
+                <div class="form-group">
+                    <input type="text" name="content" class="form-control" placeholder="请输入你要搜索的板块" id="">
+                </div>
+
+                <input type="submit" value="搜索" class="btn btn-success">
+            </form>
+        </div>
+        <table class="table-bordered table table-hover">
+            <th><input type="checkbox" name="id" id=""></th>
+            <th>id</th>
+            <th>board</th>
+            <th>description</th>
+            <th>topic</th>
+            <th>last_post</th>
+            <th>操作</th>
+            {volist name="data" id="value"}
+            <tr>
+                <td><input type="checkbox" name="choose"></td>
+                <td>{$value.id}</td>
+                <td>{$value.board}</td>
+                <td>{$value.description}</td>
+                <td>{$value.topic}</td>
+                <td>{$value.last_post}</td>
+                <td><a href="/manageBoard/{$value.id}" class="glyphicon glyphicon-pencil"></a>&nbsp;&nbsp;&nbsp;<a href="/deleteBoard/{$value.id}" class="glyphicon glyphicon-trash"></a></td>
+            </tr>
+            {/volist}
+        </table>
+    </div>
+</div>
+{/block}

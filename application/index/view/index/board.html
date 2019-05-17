@@ -1,0 +1,38 @@
+{extend name="base" /}
+
+{block name="title"}Boards{/block}
+
+{block name="main"}
+
+<div class="container">
+    <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item active"><a href="/">Boards</a></li>
+        <li class="breadcrumb-item">{$board_name}</li>
+    </ol>
+    <div class="mb-4">
+        <a href="/newTopic/{$board_name}" class="btn btn-primary">New topic</a>
+    </div>
+    <table class="table table-striped mb-4">
+        <thead class="thead-light">
+        <tr>
+            <th>Topic</th>
+            <th>Start</th>
+            <th>Replies</th>
+            <th>Views</th>
+            <th>Last Update</th>
+        </tr>
+        </thead>
+        {volist name='data', id='value'}
+        <tbody>
+        <td>
+            <a href="/content/{$board_name}/{$value.topic}">{$value.topic}</a>
+        </td>
+        <td>{$value.start}</td>
+        <td>{$value.replies}</td>
+        <td>{$value.view}</td>
+        <td>{$value.last_update}</td>
+        </tbody>
+        {/volist}
+    </table>
+</div>
+{/block}
